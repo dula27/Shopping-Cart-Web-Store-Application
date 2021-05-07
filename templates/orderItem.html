@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Bath Section</title>
+    <link rel="stylesheet" href="/static/main.css"/>
+    <script type = "text/javascript" src="/static/script.js"></script> 
+  </head>
+  <div class="content">
+    <body>
+      <a href="/"><h1 class="brand-text">Placebø</h1></a>
+      <nav role="navigation" class="navigation-menu">
+        <a href="/register" class="navigation-link">SIGNUP</a>
+        {% if not session.username %}
+          <a href="/login" class="navigation-link">LOGIN</a>
+        {% else %}
+          <a href="/logout" action="/logout" class="navigation-link">LOGOUT</a>
+        {% endif %}
+        <br>
+        <form class="navigation-link" action="/search" method="POST">
+          <input type="text" name="search" placeholder="search"/>
+          <button>search</button>
+        </form>
+        <br>
+        {% if session.username %}
+          <a href="/orders" action="/orders" class="navigation-link">ORDERS</a>
+          <a href="/cart" class="navigation-link">SHOPPING CART</a>
+        {% else %}
+        {% endif %}
+      </nav>
+      <div class="grid-5">
+        <div class="title-white">
+            +==============================+
+            |        ORDER DETAIL         |
+            +==============================+
+            {% for item in stock %}
+                <tr>
+                    <p>===============================================================================</p>
+                    <div>
+                        <td><tab6>orderID: {{item[1]}}</tab6></td>
+                    </div>
+                    <div>
+                        <td><tab3>ProductID: {{item[2]}}</tab3></td>
+                    </div>
+                    <div>
+                        <td><tab3>Quantity Ordered: {{item[3]}}</tab3></td>
+                    </div>
+                    <div>
+                        <td><tab3>Cost: ${{item[4]}}</tab3></td>
+                    </div>
+                    <br>
+                </tr>
+            {% endfor %}
+        </div>
+      </div>
+    </body>
+  </div>
+</html>
+

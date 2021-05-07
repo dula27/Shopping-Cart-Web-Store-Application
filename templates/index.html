@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Abdullah's Mini Shopping Cart</title>
+    <meta content="Abdullah's Mini Shopping Cart"/>
+    <link rel="stylesheet" href="/static/main.css"/>
+  </head>
+  <div class="content">
+    <body>
+      <a><h1 class="brand-text">Placebø</h1></a>
+      <a><h1 class="brand-text1">{{msg}}</h1></a>
+      <nav role="navigation" class="navigation-menu">
+        <a href="/register" class="navigation-link">SIGNUP</a>
+        {% if not session.username %}
+          <a href="/login" class="navigation-link">LOGIN</a>
+        {% else %}
+          <a href="/logout" action="/logout" class="navigation-link">LOGOUT</a>
+        {% endif %}
+        <br>
+        <form class="navigation-link" action="/search" method="POST">
+          <input type="text" name="search" placeholder="search"/>
+          <button>search</button>
+        </form>
+        <br>
+        {% if session.username %}
+          <a href="/orders" action="/orders" class="navigation-link">ORDERS</a>
+          <a href="/cart" class="navigation-link">SHOPPING CART</a>
+        {% else %}
+        {% endif %}
+      </nav>
+      <div class="grid-4">
+        <a href="/frag" class="photo-link-block">
+          <div class="title">
+            <img src="/static/images/frag.jpg" alt="1" width="300" height="300"/><br>
+            FRAGNANCE
+          </div>
+        </a>
+        <a href="/makeup" class="photo-link-block">
+          <div class="title">
+            <img src="/static/images/makeup.jpg" alt="1" width="300" height="300"/><br>
+            MAKE UP
+          </div>
+        </a>
+        <a href="/hair" class="photo-link-block">
+          <div class="title">
+            <img src="/static/images/shampoo2.jpg" alt="1" width="300" height="300"/><br>
+            HAIR
+          </div>
+        </a>
+        <a href="/face" class="photo-link-block">
+          <div class="title">
+            <img src="/static/images/body2.jpg" alt="1" width="300" height="300"/><br>
+            FACE
+          </div>
+        </a>
+        <a href="/body" class="photo-link-block">
+          <div class="title">
+            <img src="/static/images/body.jpg" alt="1" width="300" height="600"/><br>
+            BODY
+          </div>
+        </a>
+        <a href="/bath" class="photo-link-block">
+          <div class="title">
+            <img src="/static/images/shower.jpg" alt="1" width="300" height="300"/><br>
+            BATH
+          </div>
+        </a>
+      </div>
+    </body>
+  </div>
+</html>

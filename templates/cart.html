@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Bath Section</title>
+    <link rel="stylesheet" href="/static/main.css"/>
+    <script type = "text/javascript" src="/static/script.js"></script> 
+  </head>
+  <div class="content">
+    <body>
+      <a href="/"><h1 class="brand-text">Placebø</h1></a>
+      <nav role="navigation" class="navigation-menu">
+        <a href="/register" class="navigation-link">SIGNUP</a>
+        {% if not session.username %}
+          <a href="/login" class="navigation-link">LOGIN</a>
+        {% else %}
+          <a href="/logout" action="/logout" class="navigation-link">LOGOUT</a>
+        {% endif %}
+        <br>
+        <form class="navigation-link" action="/search" method="POST">
+          <input type="text" name="search" placeholder="search"/>
+          <button>search</button>
+        </form>
+        <br>
+        {% if session.username %}
+          <a href="/orders" action="/orders" class="navigation-link">ORDERS</a>
+          <a href="/cart" class="navigation-link">SHOPPING CART</a>
+        {% else %}
+        {% endif %}
+      </nav>
+      <div class="grid-5">
+        <div class="title-white">
+            +==============================+
+            |          CART ITEMS          |
+            +==============================+
+            {% for i in range(0, len) %}
+                <tr>
+                    <p>===============================================================================</p>
+                    <div>
+                        <td><tab6>ID: P{{pid[i]}}</tab6></td>
+                    </div>
+                    <div>
+                        <td><tab3>{{pname[i]}}</tab3></td>
+                    </div>
+                    <div>
+                        <td><tab3>Quantity buying: {{qty[i]}}</tab3></td>
+                    </div>
+                    <div>
+                      <td><tab3>Price for {{qty[i]}}: ${{price[i]}}</tab3></td>
+                    </div>
+                </tr>
+            {% endfor %}
+            <br>
+            <form name="myForm"class="register-form" action="/update" method="POST">
+              <tab4><button>CHECKOUT</button></tab4>
+            </form>
+            <br>
+            <form name="myForm"class="register-form" action="/del_cart" method="POST">
+              <tab4><button>DELETE CART</button></tab4>
+            </form>
+        </div>
+      </div>
+    </body>
+  </div>
+</html>
+

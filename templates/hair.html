@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Bath Section</title>
+    <link rel="stylesheet" href="/static/main.css"/>
+    <script type = "text/javascript" src="/static/script.js"></script> 
+  </head>
+  <div class="content">
+    <body>
+      <a href="/"><h1 class="brand-text">Placebø</h1></a>
+      <nav role="navigation" class="navigation-menu">
+        <a href="/register" class="navigation-link">SIGNUP</a>
+        {% if not session.username %}
+          <a href="/login" class="navigation-link">LOGIN</a>
+        {% else %}
+          <a href="/logout" action="/logout" class="navigation-link">LOGOUT</a>
+        {% endif %}
+        <br>
+        <form class="navigation-link" action="/search" method="POST">
+          <input type="text" name="search" placeholder="search"/>
+          <button>search</button>
+        </form>
+        <br>
+        {% if session.username %}
+          <a href="/orders" action="/orders" class="navigation-link">ORDERS</a>
+          <a href="/cart" class="navigation-link">SHOPPING CART</a>
+        {% else %}
+        {% endif %}
+      </nav>
+      <div class="grid-5">
+        <div class="title-white">
+            +==============================+
+            |          HAIR ITEMS          |
+            +==============================+
+            {% for item in stock %}
+                <tr>
+                    <p>===============================================================================</p>
+                    <div>
+                        <td><tab6>ID: P{{item[0]}}</tab6></td>
+                    </div>
+                    <div>
+                        <td><tab3>{{item[1]}}</tab3></td>
+                    </div>
+                    <div>
+                        <td><tab3>Left in Stock: {{item[2]}}</tab3></td>
+                    </div>
+                    <div>
+                        <td><tab3>${{item[3]}}</tab3></td>
+                    </div>
+                    <form name="myForm"class="register-form" action="/cart" method="POST">
+                      <input type="hidden" id=“itemID” name="itemID" value="{{item[0]}}">
+                      <input type="hidden" id="pname" name="pname" value="{{item[1]}}">
+                      <input type="hidden" id=“price” name="price" value="{{item[3]}}">
+                        <label for="buy"><tab4>BUY:</tab4></label>
+                        <select id="buy" name="buy">
+                          {% for i in range(0, item[2])%}
+                            <option value='{{i}}'>{{i}}</option>
+                          {% endfor %}
+                        </select>
+                        <button>ADD TO CART</button>
+                      </form>
+                      <br>
+                </tr>
+            {% endfor %}
+        </div>
+      </div>
+    </body>
+  </div>
+</html>
+

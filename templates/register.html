@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <title>Lab 6 Activity</title>
+    <link rel="stylesheet" href="/static/main.css"/>
+  </head>
+  <body>
+    <div class="login-page">
+      <a href="/"><h1 class="brand-text">Placebø</h1></a>
+      <div class="form">
+        <form class="register-form" action="/register" method="POST">
+          <input type="text" name="Name" placeholder="Name"/>
+          <input type="text" name="Username" placeholder="Username"/>
+          <input type="password" name="Password" placeholder="Password"/>
+          <input type="text" name="Email" placeholder="Email"/>
+          <button>create</button>
+          <p class="message">Already registered? <a href="/login">Sign In</a></p>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
